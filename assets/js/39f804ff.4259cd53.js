@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[730],{4368:a=>{a.exports=JSON.parse('{"label":"ruby","permalink":"/para_ruby/blog/tags/ruby","allTagsPath":"/para_ruby/blog/tags","count":1}')}}]);
