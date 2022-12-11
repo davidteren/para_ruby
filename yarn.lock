@@ -6646,6 +6646,11 @@ slash@^4.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
   integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
+snowfall@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/snowfall/-/snowfall-2.1.0.tgz#7d8c1d65919f7895845e8bce8a0848efe0bf0f86"
+  integrity sha512-voNNcAJiV5dc4XfD+UEp/rk7dL2sAQH2dJkuHT7gkgTi5UWIPsrnq+moaPs3qpj9LlNVMrNsejfT9KXGE6ohqA==
+
 sockjs@^0.3.24:
   version "0.3.24"
   resolved "https://registry.yarnpkg.com/sockjs/-/sockjs-0.3.24.tgz#c9bc8995f33a111bea0395ec30aa3206bdb5ccce"
