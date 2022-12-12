@@ -7,7 +7,6 @@ sidebar_position: 1
 ### [Written by ChatGPT](https://openai.com/blog/chatgpt/)
 
 
-
 Includes **"Explain Like I'm Five"** contexts. 
 
 :::info "Explain it like I'm five"
