@@ -32,7 +32,6 @@ handles both the person's name and age, we could define a Person class and a sep
   <TabItem value="ruby" label="Ruby" default>
 
 ```ruby
-
 class Person
   attr_accessor :name
 
@@ -64,26 +63,18 @@ that purpose.
   <TabItem value="specs" label="Specs">
 
 ```ruby
-# spec/person_spec.rb
-
-require 'rspec'
-
-RSpec.describe Person do
-  describe '#initialize' do
-    it 'should set the name attribute' do
-      person = Person.new('John')
-      expect(person.name).to eq('John')
+describe Person do
+  describe "#initialize" do
+    it "should set the name attribute" do
+      person = Person.new("John")
+      expect(person.name).to eq("John")
     end
   end
 end
 
-# spec/age_spec.rb
-
-require 'rspec'
-
 RSpec.describe Age do
-  describe '#initialize' do
-    it 'should set the age attribute' do
+  describe "#initialize" do
+    it "should set the age attribute" do
       age = Age.new(25)
       expect(age.age).to eq(25)
     end
@@ -115,7 +106,7 @@ class Person
 
   # Define a method for greeting another Person object
   def greet(other_person)
-    puts "Hi #{other_person.name}, I'm #{@name} and I'm #{@age} years old."
+    "Hi #{other_person.name}, I'm #{@name} and I'm #{@age} years old."
   end
 end
 
@@ -157,12 +148,44 @@ by avoiding the inclusion of unnecessary or unrelated functionality.
   </TabItem>
   <TabItem value="specs" label="Specs">
 
-:::note
+```ruby
+RSpec.describe Person do
+  describe "#initialize" do
+    it "should set the name and age attributes" do
+      person = Person.new("John", 25)
+      expect(person.name).to eq("John")
+      expect(person.age).to eq(25)
+    end
+  end
 
-No specs yet
+  describe "#greet" do
+    it "should greet another person" do
+      person1 = Person.new("John", 25)
+      person2 = Person.new("Jane", 30)
+      expect(person1.greet(person2)).to eq("Hi Jane, I'm John and I'm 25 years old.")
+    end
+  end
+end
 
-:::
+RSpec.describe Employee do
+  describe "#initialize" do
+    it "should set the name, age, title, and salary attributes" do
+      employee = Employee.new("John", 25, "Software Engineer", 75000)
+      expect(employee.name).to eq("John")
+      expect(employee.age).to eq(25)
+      expect(employee.title).to eq("Software Engineer")
+      expect(employee.salary).to eq(75000)
+    end
+  end
 
+  describe "#calculate_annual_salary" do
+    it "should calculate the annual salary for an employee" do
+      employee = Employee.new("John", 25, "Software Engineer", 75000)
+      expect(employee.calculate_annual_salary).to eq(900000)
+    end
+  end
+end
+```
   </TabItem>
 </Tabs>
 
@@ -179,7 +202,6 @@ transactions), and not for other tasks such as rendering HTML or sending email n
 the class focused and easier to maintain.
 
 ```ruby
-
 class BankAccount
   attr_accessor :balance
 
@@ -204,12 +226,38 @@ makes the class more focused and easier to maintain.
   </TabItem>
   <TabItem value="specs" label="Specs">
 
-:::note
-No specs yet
-:::
+```ruby
+RSpec.describe BankAccount do
+  describe "#initialize" do
+    it "should set the balance attribute" do
+      account = BankAccount.new(100)
+      expect(account.balance).to eq(100)
+    end
+  end
+
+  describe "#deposit" do
+    it "should increase the balance by the given amount" do
+      account = BankAccount.new(100)
+      account.deposit(50)
+      expect(account.balance).to eq(150)
+    end
+  end
+
+  describe "#withdraw" do
+    it "should decrease the balance by the given amount" do
+      account = BankAccount.new(100)
+      account.withdraw(50)
+      expect(account.balance).to eq(50)
+    end
+  end
+end
+
+```
 
   </TabItem>
 </Tabs>
+
+--- 
 
 ### Example A4
 
@@ -261,14 +309,39 @@ maintainable.
   </TabItem>
   <TabItem value="specs" label="Specs">
 
-:::note 
- 
-No specs yet
+```ruby
+RSpec.describe Person do
+  describe "#initialize" do
+    it "should set the name and age attributes" do
+      person = Person.new("John", 25)
+      expect(person.name).to eq("John")
+      expect(person.age).to eq(25)
+    end
+  end
+end
 
-:::
+RSpec.describe EmailSender do
+  describe "#send_email" do
+    it "should send an email to the given recipient" do
+      email_sender = EmailSender.new
+      expect(email_sender.send_email("jane@example.com", "Hello!", "Hi there!")).to eq(true)
+    end
+  end
+end
 
+RSpec.describe Database do
+  describe "#save" do
+    it "should save the given data to the database" do
+      database = Database.new
+      expect(database.save({name: "John", age: 25})).to eq(true)
+    end
+  end
+end
+```
   </TabItem>
 </Tabs>
+
+---
 
 ### Example A5
 
@@ -289,7 +362,7 @@ class Person
 
   # Define a method for greeting another Person object
   def greet(other_person)
-    puts "Hi #{other_person.name}, I'm #{@name} and I'm #{@age} years old."
+    "Hi #{other_person.name}, I'm #{@name} and I'm #{@age} years old."
   end
 end
 
@@ -324,15 +397,48 @@ class has a clear and well-defined responsibility. This can improve the maintain
   </TabItem>
   <TabItem value="specs" label="Specs">
 
-:::note
 
-No specs yet
+```ruby
+RSpec.describe Person do
+  describe "#initialize" do
+    it "should set the name and age attributes" do
+      person = Person.new("John", 25)
+      expect(person.name).to eq("John")
+      expect(person.age).to eq(25)
+    end
+  end
 
-:::
+  describe "#greet" do
+    it "should greet another person" do
+      person1 = Person.new("John", 25)
+      person2 = Person.new("Jane", 30)
+      expect(person1.greet(person2)).to eq("Hi Jane, I'm John and I'm 25 years old.")
+    end
+  end
+end
+
+RSpec.describe PersonValidator do
+  describe "#validate" do
+    it "should raise an error if the person is invalid" do
+      person = Person.new(nil, nil)
+      validator = PersonValidator.new
+      expect { validator.validate(person) }.to raise_error("Invalid person: name and age are required")
+    end
+
+    it "should not raise an error if the person is valid" do
+      person = Person.new("John", 25)
+      validator = PersonValidator.new
+      expect { validator.validate(person) }.not_to raise_error
+    end
+  end
+end
+```
+
 
   </TabItem>
 </Tabs>
 
+---  
 
 ## Examples B
 
@@ -348,7 +454,6 @@ ID, a Teacher class that inherits from Person and adds a subject and salary, and
 name, teacher, and students:
 
 ```ruby
-
 class Person
   attr_accessor :name, :age
 
@@ -403,12 +508,74 @@ students. This promotes code that is more modular and maintainable.
   </TabItem>
   <TabItem value="specs" label="Specs">
 
-:::note
+```ruby
+RSpec.describe Person do
+  describe '#initialize' do
+    it 'initializes a person with a name and age' do
+      person = Person.new('John Doe', 30)
 
-No specs yet
+      expect(person.name).to eq('John Doe')
+      expect(person.age).to eq(30)
+    end
+  end
+end
 
-:::
+RSpec.describe Teacher do
+  subject(:teacher) { described_class.new("Jane", 30, "Math", 50000) }
 
+  describe "#initialize" do
+    it "sets the teacher's name" do
+      expect(teacher.name).to eq("Jane")
+    end
+
+    it "sets the teacher's age" do
+      expect(teacher.age).to eq(30)
+    end
+
+    it "sets the teacher's subject" do
+      expect(teacher.subject).to eq("Math")
+    end
+
+    it "sets the teacher's salary" do
+      expect(teacher.salary).to eq(50000)
+    end
+  end
+end
+
+RSpec.describe Course do
+  let(:teacher) { Teacher.new("Jane", 30, "Math", 50000) }
+  let(:students) { ["John", "Sally", "Dave"] }
+  subject(:course) { described_class.new("Algebra 101", teacher, students) }
+
+  describe "#initialize" do
+    it "sets the course's name" do
+      expect(course.name).to eq("Algebra 101")
+    end
+
+    it "sets the course's teacher" do
+      expect(course.teacher).to eq(teacher)
+    end
+
+    it "sets the course's students" do
+      expect(course.students).to eq(students)
+    end
+  end
+
+  describe "#add_student" do
+    it "adds a student to the course" do
+      course.add_student("Mark")
+      expect(course.students).to include("Mark")
+    end
+  end
+
+  describe "#remove_student" do
+    it "removes a student from the course" do
+      course.remove_student("Sally")
+      expect(course.students).not_to include("Sally")
+    end
+  end
+end
+```
   </TabItem>
 </Tabs>
 
@@ -480,116 +647,91 @@ end
   </TabItem>
   <TabItem value="specs" label="Specs">
 
-:::note
-
-No specs yet
-
-:::
-
-  </TabItem>
-</Tabs>
-
-
-
-
-
-## Rails Examples C
-
-### Example C1
-
-<Tabs>
-  <TabItem value="ruby" label="Ruby" default>
-
-A Product model that manages a product's name, price, and quantity, and a ShoppingCart controller that manages a list of
-products and their total price:
-
 ```ruby
+RSpec.describe Calculator do
+  let(:calculator) { Calculator.new }
 
-class Product < ActiveRecord::Base
-  validates :name, presence: true
-  validates :price, presence: true, numericality: true
-  validates :quantity, presence: true, numericality: {only_integer: true}
-end
-
-class ShoppingCartController < ApplicationController
-  def add_product
-    product = Product.find(params[:product_id])
-    cart = session[:shopping_cart] ||= []
-    cart << product
+  describe "#add" do
+    it "adds two numbers" do
+      expect(calculator.add(2, 3)).to eq(5)
+    end
   end
 
-  def remove_product
-    product = Product.find(params[:product_id])
-    cart = session[:shopping_cart]
-    cart.delete(product) if cart
+  describe "#subtract" do
+    it "subtracts two numbers" do
+      expect(calculator.subtract(5, 3)).to eq(2)
+    end
   end
 
-  def total
-    cart = session[:shopping_cart]
-    @total = 0
-    if cart
-      cart.each do |product|
-        @total += product.price
-      end
+  describe "#multiply" do
+    it "multiplies two numbers" do
+      expect(calculator.multiply(2, 3)).to eq(6)
+    end
+  end
+
+  describe "#divide" do
+    it "divides two numbers" do
+      expect(calculator.divide(6, 3)).to eq(2)
+    end
+
+    it "raises an error if the second argument is zero" do
+      expect { calculator.divide(6, 0) }.to raise_error(ZeroDivisionError)
     end
   end
 end
 
-```
+RSpec.describe ScientificCalculator do
+  let(:calculator) { ScientificCalculator.new }
 
-  </TabItem>
-  <TabItem value="specs" label="Specs">
-
-:::note
-
-No specs yet
-
-:::
-
-  </TabItem>
-</Tabs>
-
-
-
-### Example C2
-
-<Tabs>
-  <TabItem value="ruby" label="Ruby" default>
-
-A BankAccount model that manages a bank account's balance and transactions, and a Statement controller that generates a
-statement of transactions:
-
-```ruby
-
-class BankAccount < ActiveRecord::Base
-  validates :balance, presence: true, numericality: true
-
-  def deposit(amount)
-    self.balance += amount
+  describe "#square_root" do
+    it "calculates the square root of a number" do
+      expect(calculator.square_root(9)).to eq(3)
+    end
   end
 
-  def withdraw(amount)
-    self.balance -= amount
+  describe "#logarithm" do
+    it "calculates the logarithm of a number" do
+      expect(calculator.logarithm(100)).to eq(4.605170185988092)
+    end
+  end
+
+  describe "#exponent" do
+    it "raises a number to a given power" do
+      expect(calculator.exponent(2, 3)).to eq(8)
+    end
+  end
+
+  describe "#factorial" do
+    it "calculates the factorial of a number" do
+      expect(calculator.factorial(5)).to eq(120)
+    end
   end
 end
 
-class StatementController < ApplicationController
-  def generate
-    @account = BankAccount.find(params[:account_id])
-    @transactions = @account.transactions.order(created_at: :desc)
+RSpec.describe History do
+  describe ".add" do
+    it "adds a calculation to the history" do
+      History.add("2 + 3 = 5")
+      expect(History.instance_variable_get(:@history)).to eq(["2 + 3 = 5"])
+    end
+  end
+
+  describe ".clear" do
+    it "clears the history" do
+      History.instance_variable_set(:@history, ["2 + 3 = 5"])
+      History.clear
+      expect(History.instance_variable_get(:@history)).to eq([])
+    end
+  end
+
+  describe ".print" do
+    it "prints the history to the console" do
+      History.instance_variable_set(:@history, ["2 + 3 = 5", "4 + 5 = 9"])
+      expect { History.print }.to output("2 + 3 = 5\n4 + 5 = 9\n").to_stdout
+    end
   end
 end
-
 ```
-
-  </TabItem>
-  <TabItem value="specs" label="Specs">
-
-    :::note 
-     
-    No specs yet
-    
-    :::
 
   </TabItem>
 </Tabs>
