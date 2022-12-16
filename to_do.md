@@ -4,12 +4,6 @@
 - [ ] Conctrete
 - [ ] Concretion
 
-
-
-
-
-
-
 ## Rails Patterns
 - [ ] Active Record pattern
 - [ ] Adapter pattern
