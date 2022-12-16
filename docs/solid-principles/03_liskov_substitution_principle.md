@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 
 # Liskov Substitution Principle (LSP)
@@ -11,83 +13,29 @@ The Liskov Substitution Principle (LSP) is a principle of object-oriented design
 > The Liskov Substitution Principle is like a game of hide and seek. In hide and seek, there are different types of people who can play, like kids and adults. And even though kids and adults are different, they can still play the same game together. For example, if a kid is hiding, then an adult can still go and find them. And if an adult is hiding, then a kid can still go and find them. So even though kids and adults are different, they can still play hide and seek together without causing any problems. In object-oriented programming, the different types of people are like classes, and the game of hide and seek is like a program. The Liskov Substitution Principle says that objects of different classes should be able to be used together in a program without causing any problems.
 :::
 
-Here are some Liskov Substitution Principle (LSP) code examples:
+<Tabs>
+  <TabItem value="bad" label="Bad" default>
 
-```ruby
-# Define a base Shape class
-class Shape
-  # Define a method to calculate the area
-  def area
-    raise NotImplementedError, "Method not implemented"
-  end
-end
+  ```ruby
 
-# Define a Circle class that inherits from Shape
-class Circle < Shape
-  # Initialize a circle with a radius
-  def initialize(radius)
-    @radius = radius
-  end
+  ```
 
-  # Override the area method to calculate the area of a circle
-  def area
-    Math::PI * (@radius ** 2)
-  end
-end
+  </TabItem>
+  <TabItem value="good" label="Good">
 
-# Define a Square class that inherits from Shape
-class Square < Shape
-  # Initialize a square with a side length
-  def initialize(side)
-    @side = side
-  end
+A better way to structure this code would be to separate the responsibilities into different classes, each with a single
+responsibility. For example:
 
-  # Override the area method to calculate the area of a square
-  def area
-    @side ** 2
-  end
-end
+  ```ruby
 
-# Define a Shapes class that can calculate the total area of a collection of shapes
-class Shapes
-  # Initialize a shapes collection with an array of shapes
-  def initialize(shapes)
-    @shapes = shapes
-  end
+  ```
 
-  # Calculate the total area of all shapes in the collection
-  def total_area
-    @shapes.map(&:area).sum
-  end
-end
+  </TabItem>
+  <TabItem value="specs" label="Specs">
 
-# Example usage
+  ```ruby
 
-# Create a circle with radius 2
-circle = Circle.new(2)
+  ````
 
-# Create a square with side length 2
-square = Square.new(2)
-
-# Create a shapes collection with the circle and square
-shapes = Shapes.new([circle, square])
-
-# Calculate the total area of all shapes in the collection
-puts shapes.total_area
-# Output: 12.566370614359172
-
-```
-
-```ruby
-RSpec.describe Shapes do
-  let(:circle) { Circle.new(2) }
-  let(:square) { Square.new(2) }
-  let(:shapes) { Shapes.new([circle, square]) }
-
-  it "calculates the total area of a collection of shapes" do
-    expect(shapes.total_area).to eq(16.566370614359172)
-  end
-end
-```
-
-In this example, the Circle and Square classes both inherit from the Shape class, and they each implement the area method in a way that is specific to their respective shape.
+  </TabItem>
+</Tabs>

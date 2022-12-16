@@ -1,7 +1,8 @@
 ---
 sidebar_position: 5
 ---
-
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Interface Segregation Principle (ISP)
 
@@ -11,3 +12,30 @@ The Interface Segregation Principle (ISP) is a principle of object-oriented desi
 
 > The Interface Segregation Principle is like a toolbox. In a toolbox, there are different tools for different jobs. For example, there might be a hammer for pounding nails, and a screwdriver for turning screws. And even though the hammer and the screwdriver are both tools, they are not used for the same thing. So if you want to use the hammer, you don't have to look through the whole toolbox to find it. You can just go to the part of the toolbox where the hammers are, and take out the one you need. In object-oriented programming, the tools are like methods, and the toolbox is like an interface. The Interface Segregation Principle says that interfaces should be organized into small, specific parts, so that you can easily find the methods you need without having to look through lots of other methods that you don't need.
 :::
+
+<Tabs>
+  <TabItem value="bad" label="Bad" default>
+
+  ```ruby
+
+  ```
+
+  </TabItem>
+  <TabItem value="good" label="Good">
+
+A better way to structure this code would be to separate the responsibilities into different classes, each with a single
+responsibility. For example:
+
+  ```ruby
+
+  ```
+
+  </TabItem>
+  <TabItem value="specs" label="Specs">
+
+  ```ruby
+
+  ````
+
+  </TabItem>
+</Tabs>
