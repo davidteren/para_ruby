@@ -4,7 +4,7 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# The Single Responsibility Principle
+# The Single Responsibility Principle (SRP)
 
 The Single Responsibility Principle (SRP) is a principle of object-oriented programming (OOP) that states that a class
 should only have a single responsibility, or a single reason to change. In other words, a class should focus on one

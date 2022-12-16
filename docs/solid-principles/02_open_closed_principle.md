@@ -15,6 +15,8 @@ The Open/Closed Principle (OCP) is a principle of object-oriented design that st
 > The Open/Closed Principle is like a box. You can put things inside the box and take things out, but you can't change the box itself. This is good because you can use the same box over and over again and it will still work the same way. And if you want to put a different kind of thing in the box, you can just make a new box that is the same size but has a different shape or color. This way, you can keep using the old box and the new box without having to change anything.
 :::
 
+## Code examples
+
 <Tabs>
   <TabItem value="bad" label="Bad" default>
 
@@ -49,8 +51,7 @@ In this code, the PaymentProcessor class is responsible for processing payments 
   </TabItem>
   <TabItem value="good" label="Good">
 
-A better way to structure this code would be to separate the responsibilities into different classes, each with a single
-responsibility. For example:
+A better way to structure this code would be to use polymorphism to allow new payment types to be added without modifying the `PaymentProcessor` class. For example:
 
 ```ruby
 class PaymentProcessor
@@ -78,7 +79,7 @@ class StripePayment
 end
 ```
 
-With this refactored code, new payment types can be added by creating new classes that implement the process method, without modifying the PaymentProcessor class. This allows the PaymentProcessor class to be open for extension without being modified.
+With this refactored code, new payment types can be added by creating new classes that implement the process method, without modifying the PaymentProcessor class. This allows the `PaymentProcessor` class to be open for extension without being modified.
 
   </TabItem>
   <TabItem value="specs" label="Specs">
